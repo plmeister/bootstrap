@@ -9,5 +9,5 @@ This repo prepares any new Linux machine for configuration management.
 
 ### Usage
 ```bash
-curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/bootstrap/main/bootstrap.sh | bash
+curl -fsSL https://raw.githubusercontent.com/plmeister/bootstrap/main/bootstrap.sh | bash
 ```
