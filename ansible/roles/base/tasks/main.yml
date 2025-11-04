@@ -1,0 +1,25 @@
+- name: Ensure core packages are installed
+  apt:
+    name:
+      - git
+      - curl
+      - wget
+      - vim
+      - python3
+      - python3-pip
+    state: present
+    update_cache: true
+
+- name: Create /opt/private-infra placeholder
+  file:
+    path: /opt/private-infra
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    mode: '0755'
+
+- name: Set up daily ansible-pull cron
+  cron:
+    name: "Daily configuration update"
+    user: "{{ ansible_user_id }}"
+    job: "ansible-pull -U https://github.com/YOUR_GITHUB_USERNAME/bootstrap.git -i localhost, ansible/playbook.yml >> /var/log/ansible-pull.log 2>&1"
+    special_time: daily
